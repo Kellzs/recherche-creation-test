@@ -31,9 +31,9 @@ public class IsometricPointAndClickController : MonoBehaviour
     void MovePlayerToClickPosition(Vector2 targetPosition)
     {
         // Convert target position to Vector3 (keeping Z as 0 for 2D movement)
-        Vector3 targetPosition3D = new Vector3(targetPosition.x, targetPosition.y, 0f);
+        Vector3 targetPosition3D = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
 
-        // Start moving the player to the target position
+        // Start moving the player to the target position with smooth Z movement
         StartCoroutine(MoveToPosition(targetPosition3D));
     }
 
@@ -42,7 +42,7 @@ public class IsometricPointAndClickController : MonoBehaviour
         // Move towards the target position at the specified moveSpeed
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
-            // Move the player
+            // Smoothly interpolate between the current position and the target position
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null; // Wait until the next frame
         }
@@ -55,18 +55,10 @@ public class IsometricPointAndClickController : MonoBehaviour
     {
         // Raycast to check if the clicked position is within a walkable area on Tilemap 1
         RaycastHit2D hit1 = Physics2D.Raycast(point, Vector2.zero, Mathf.Infinity, walkableLayer1);
-        // Debugging the hit information for layer 1
-        Debug.Log($"Raycast hit on Layer 1: {hit1.collider != null} | Position: {hit1.point}");
-
         // Raycast to check if the clicked position is within a walkable area on Tilemap 2
         RaycastHit2D hit2 = Physics2D.Raycast(point, Vector2.zero, Mathf.Infinity, walkableLayer2);
-        // Debugging the hit information for layer 2
-        Debug.Log($"Raycast hit on Layer 2: {hit2.collider != null} | Position: {hit2.point}");
-
         // Raycast to check if the clicked position is within a walkable area on Tilemap 3
         RaycastHit2D hit3 = Physics2D.Raycast(point, Vector2.zero, Mathf.Infinity, walkableLayer3);
-        // Debugging the hit information for layer 3
-        Debug.Log($"Raycast hit on Layer 3: {hit3.collider != null} | Position: {hit3.point}");
 
         // Check if a valid collider was hit in any of the layers (Tilemap 1, 2, or 3)
         if (hit1.collider != null || hit2.collider != null || hit3.collider != null)
