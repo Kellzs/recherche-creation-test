@@ -5,6 +5,7 @@ public class IsometricPointAndClickController : MonoBehaviour
     public float moveSpeed = 5f; // Movement speed of the player
     public LayerMask walkableLayer1; // Layer mask for walkable areas on Tilemap 1 (Ground)
     public LayerMask walkableLayer2; // Layer mask for walkable areas on Tilemap 2 (Elevated Platforms)
+    public LayerMask walkableLayer3; // Layer mask for walkable areas on Tilemap 3 (High Platforms)
 
     private Rigidbody2D rb; // Reference to the player's Rigidbody2D
 
@@ -62,23 +63,15 @@ public class IsometricPointAndClickController : MonoBehaviour
         // Debugging the hit information for layer 2
         Debug.Log($"Raycast hit on Layer 2: {hit2.collider != null} | Position: {hit2.point}");
 
-        // Check if a valid collider was hit in either layer (Tilemap 1 or Tilemap 2)
-        if (hit1.collider != null || hit2.collider != null)
+        // Raycast to check if the clicked position is within a walkable area on Tilemap 3
+        RaycastHit2D hit3 = Physics2D.Raycast(point, Vector2.zero, Mathf.Infinity, walkableLayer3);
+        // Debugging the hit information for layer 3
+        Debug.Log($"Raycast hit on Layer 3: {hit3.collider != null} | Position: {hit3.point}");
+
+        // Check if a valid collider was hit in any of the layers (Tilemap 1, 2, or 3)
+        if (hit1.collider != null || hit2.collider != null || hit3.collider != null)
         {
-            // Get the platform's position (whichever layer was hit first)
-            Vector3 platformPosition = hit1.collider != null ? hit1.collider.transform.position : hit2.collider.transform.position;
-
-            // Convert the click position to Vector3 (assuming Z = 0)
-            Vector3 point3D = new Vector3(point.x, point.y, 0f);
-
-            // Debug the platform position and Z comparison
-            Debug.Log($"Platform Position: {platformPosition} | Click Position: {point3D}");
-
-            // Check if the Z difference between the platform and the clicked position is within tolerance
-            if (Mathf.Abs(platformPosition.z - point3D.z) < 1f) // Adjust Z tolerance if necessary
-            {
-                return true; // Valid walkable area
-            }
+            return true; // Valid walkable area
         }
 
         return false; // No valid platform found
