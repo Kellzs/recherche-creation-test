@@ -400,7 +400,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
@@ -423,8 +423,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.5
-  m_PointLightOuterRadius: 0.8238857
+  m_PointLightInnerRadius: 0.2
+  m_PointLightOuterRadius: 0.60674554
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -443,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548729720}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.4349489, w: 0.9004552}
+  m_LocalRotation: {x: 0, y: 0, z: -0.4404799, w: 0.8977625}
   m_LocalPosition: {x: 2.1955326, y: -1.009735, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1700,6 +1700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseLight: {fileID: 1165517093}
+  lightIntensity: 1
+  lightRange: 2.5
 --- !u!114 &1165517093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1715,7 +1717,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
@@ -1739,7 +1741,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1.0135846
+  m_PointLightOuterRadius: 0.6361584
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -1758,7 +1760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165517091}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.006641867, w: 0.99997795}
+  m_LocalRotation: {x: 0, y: 0, z: -0.010454876, w: 0.99994534}
   m_LocalPosition: {x: 3.457496, y: -2.194362, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1863,6 +1865,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLight: {fileID: 548729721}
   player: {fileID: 1302783940}
+  playerSprite: {fileID: 1672157324}
+  lightIntensity: 1
+  lightRange: 5
 --- !u!1 &1328965811
 GameObject:
   m_ObjectHideFlags: 0
