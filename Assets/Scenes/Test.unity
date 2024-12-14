@@ -7414,6 +7414,7 @@ MonoBehaviour:
   playerLight: {fileID: 548729721}
   player: {fileID: 1302783940}
   playerSprite: {fileID: 1672157324}
+  fadeOutSound: {fileID: 8300000, guid: 46b9fe2fc0e81464194fea819d86d123, type: 3}
   lightIntensity: 1
   lightRange: 5
 --- !u!1 &1328965811
@@ -9449,6 +9450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitSound: {fileID: 8300000, guid: 4088d9915d35b8f4dbfe24a0d486ece0, type: 3}
   delayBeforeQuit: 2
+  lightFadeDuration: 3
+  playerLightController: {fileID: 1302783942}
 --- !u!1 &1498669323
 GameObject:
   m_ObjectHideFlags: 0
