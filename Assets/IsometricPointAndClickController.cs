@@ -6,8 +6,10 @@ public class IsometricPointAndClickController : MonoBehaviour
     public LayerMask walkableLayer1; // Layer mask for walkable areas on Tilemap 1 (Ground)
     public LayerMask walkableLayer2; // Layer mask for walkable areas on Tilemap 2 (Elevated Platforms)
     public LayerMask walkableLayer3; // Layer mask for walkable areas on Tilemap 3 (High Platforms)
+    public Collider2D finalCollider; // Reference to the final collider
 
     private Rigidbody2D rb; // Reference to the player's Rigidbody2D
+    private bool canMove = true; // Flag to control player movement
 
     void Start()
     {
@@ -16,7 +18,8 @@ public class IsometricPointAndClickController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // When the left mouse button is clicked
+        // Only allow movement if canMove is true
+        if (canMove && Input.GetMouseButtonDown(0)) // When the left mouse button is clicked
         {
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Get the mouse click position in world space
             Debug.Log($"Clicked Position: {clickPosition}"); // Debugging the clicked position
@@ -67,5 +70,14 @@ public class IsometricPointAndClickController : MonoBehaviour
         }
 
         return false; // No valid platform found
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other == finalCollider) // When the player enters the final collider
+        {
+            canMove = false; // Disable movement
+            Debug.Log("Player has entered the final collider. Movement disabled.");
+        }
     }
 }
