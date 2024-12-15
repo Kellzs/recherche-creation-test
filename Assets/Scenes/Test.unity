@@ -1000,9 +1000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b213e2098966a314a8b49a0dfc287652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClip: {fileID: 8300000, guid: 379004d48aecdc84e9d7853c795b7c56, type: 3}
-  maxDistance: 10
-  fadeInDuration: 0.5
+  soundClip: {fileID: 8300000, guid: 67310b5d654777e4ab83b87493d4cb68, type: 3}
+  maxDistance: 20
+  fadeInDuration: 3
   volumeAtMaxDistance: 1
   maxVolume: 1
   playerLightController: {fileID: 1302783942}
@@ -5596,7 +5596,11 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.8790316, y: 1.5417287}
-      - {x: -0.59336233, y: 0.7748674}
+      - {x: 0.3699503, y: 1.2618228}
+      - {x: 0.84769297, y: 1.0359646}
+      - {x: 0.36631536, y: 0.7956993}
+      - {x: 0.8286638, y: 0.5221957}
+      - {x: 0.38407612, y: 0.28846443}
       - {x: 0.7503063, y: 0.08213246}
       - {x: 0.8858, y: 0.019974887}
       - {x: 2.3411531, y: 0.78941816}
