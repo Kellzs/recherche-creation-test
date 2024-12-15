@@ -8,6 +8,7 @@ public class MouseHoverRevealer : MonoBehaviour
     public float revealDelay = 0.5f;      // Delay before objects are revealed
     public float disappearDelay = 1f;     // Time before objects disappear after being revealed
     public LayerMask hoverLayer;          // LayerMask to ensure we're detecting the correct objects
+    public float soundVolume = 1f;        // Volume control for the sound (0 to 1)
 
     private AudioSource audioSource;      // AudioSource to play the sound
     private bool hasTriggered = false;    // Tracks whether the action has already triggered
@@ -24,6 +25,7 @@ public class MouseHoverRevealer : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
         audioSource.clip = hoverSound;
+        audioSource.volume = soundVolume;  // Set the volume from the inspector
     }
 
     private void Update()
