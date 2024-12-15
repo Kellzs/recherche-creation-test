@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal; // For Light2D
-
+using System.Collections;
 public class PlayerLightController2D : MonoBehaviour
 {
     public Light2D playerLight;       // Reference to the 2D light that will follow the player
@@ -15,12 +14,18 @@ public class PlayerLightController2D : MonoBehaviour
 
     private bool isVisible = true;    // Tracks whether the player and light are visible
 
+    private bool isFlickering = false;    // To track whether the light is flickering
+    private Color originalColor;    // Store original color of the light
+
     void Start()
     {
         // Set up the AudioSource for playing the sound
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
         audioSource.clip = fadeOutSound;
+
+        // Store the original color of the light
+        originalColor = playerLight.color;
     }
 
     void Update()
@@ -31,6 +36,12 @@ public class PlayerLightController2D : MonoBehaviour
             isVisible = !isVisible; // Switch the visibility state
             playerLight.enabled = isVisible; // Enable or disable the light
             playerSprite.enabled = isVisible; // Enable or disable the player's sprite
+
+            // If visibility is turned off, stop flickering if it's on
+            if (!isVisible && isFlickering)
+            {
+                StopFlickering();
+            }
         }
 
         // Ensure the light follows the player's position in the scene
@@ -91,5 +102,42 @@ public class PlayerLightController2D : MonoBehaviour
         Color finalColor = playerSprite.color;
         finalColor.a = 0f;
         playerSprite.color = finalColor;
+    }
+
+    // Method to start flickering the player's light red
+    public void StartFlickeringRed(float flickerInterval)
+    {
+        if (!isFlickering)
+        {
+            isFlickering = true;
+            StartCoroutine(FlickerLightCoroutine(flickerInterval));
+        }
+    }
+
+    // Coroutine to handle the flickering effect for the light
+    private IEnumerator FlickerLightCoroutine(float interval)
+    {
+        while (isFlickering)
+        {
+            // Alternates between red and white color
+            playerLight.color = playerLight.color == Color.red ? originalColor : Color.red;
+
+            // Adjust light intensity (optional)
+            playerLight.intensity = playerLight.color == Color.red ? lightIntensity * 1.5f : lightIntensity;
+
+            yield return new WaitForSeconds(interval);
+        }
+    }
+
+    // Call this method to stop flickering (e.g., when the player presses space)
+    public void StopFlickering()
+    {
+        isFlickering = false;
+        if (playerLight != null)
+        {
+            // Restore the light's color and intensity to its original state
+            playerLight.color = originalColor;
+            playerLight.intensity = lightIntensity;
+        }
     }
 }

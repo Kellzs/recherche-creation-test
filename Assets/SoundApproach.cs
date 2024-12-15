@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-
 public class SoundApproach : MonoBehaviour
 {
     public AudioClip soundClip;           // The sound to play
@@ -11,6 +10,8 @@ public class SoundApproach : MonoBehaviour
 
     private bool hasPlayed = false;       // To track if the sound has already played
     private AudioSource audioSource;      // The audio source that will play the sound
+
+    public PlayerLightController2D playerLightController; // Reference to PlayerLightController2D
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,6 +31,16 @@ public class SoundApproach : MonoBehaviour
 
             // Start the fade-in process
             StartCoroutine(FadeInSound());
+
+            // Start flickering the light red
+            if (playerLightController != null)
+            {
+                playerLightController.StartFlickeringRed(0.1f);
+            }
+            else
+            {
+                Debug.LogError("PlayerLightController2D is not assigned!");
+            }
         }
     }
 
