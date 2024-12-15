@@ -1481,7 +1481,7 @@ Transform:
   m_GameObject: {fileID: 398181897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6, y: 134.4, z: 0}
+  m_LocalPosition: {x: -1.49, y: 134.4, z: 0}
   m_LocalScale: {x: 43.70918, y: 43.70918, z: 43.70918}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2519,10 +2519,10 @@ MonoBehaviour:
   - {fileID: 21290232}
   revealSound: {fileID: 0}
   soundVolume: 1
-  revealDelay: 0.2
-  hideDelay: 1
-  flickerDuration: 0.5
-  flickerInterval: 0.1
+  revealDelay: 0
+  hideDelay: 0
+  flickerDuration: 0.3
+  flickerInterval: 0.05
 --- !u!1 &608150445
 GameObject:
   m_ObjectHideFlags: 0
@@ -12205,7 +12205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1974779064
 SpriteRenderer:
   m_ObjectHideFlags: 0
